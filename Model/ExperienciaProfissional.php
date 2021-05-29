@@ -86,11 +86,11 @@ class ExperienciaProfissional
       
         if ($conn->query($sql) === true) {
             $this->id = mysqli_insert_id($conn);
-            $conn->close();
+            //$conn->close();
             return true;
            
         } else {
-            $conn->close();
+            //$conn->close();
             return false;
         }
     }
@@ -110,11 +110,11 @@ class ExperienciaProfissional
       
         if ($conn->query($sql) === true) {
            
-            $conn->close();
+            //$conn->close();
             return true;
            
         } else {
-            $conn->close();
+            //$conn->close();
             return false;
         }
     }
@@ -130,7 +130,7 @@ class ExperienciaProfissional
 
         $sql = "SELECT * FROM experienciaProfissional WHERE idusuario =  '".$idusuario."'" ;
         $re = $conn->query($sql);
-        $conn->close();
+        //$conn->close();
         return $re;
     }
 }

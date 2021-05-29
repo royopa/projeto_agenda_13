@@ -75,11 +75,11 @@ class FormacaoAcad
       
         if ($conn->query($sql) === true) {
             $this->id = mysqli_insert_id($conn);
-            $conn->close();
+            //$conn->close();
             return true;
            
         } else {
-            $conn->close();
+            //$conn->close();
             return false;
         }
     }
@@ -99,11 +99,11 @@ class FormacaoAcad
       
         if ($conn->query($sql) === true) {
            
-            $conn->close();
+            //$conn->close();
             return true;
            
         } else {
-            $conn->close();
+            //$conn->close();
             return false;
         }
     }
@@ -119,7 +119,7 @@ class FormacaoAcad
 
         $sql = "SELECT * FROM formacaoacademica WHERE idusuario =  '".$idusuario."'" ;
         $re = $conn->query($sql);
-        $conn->close();
+        //$conn->close();
         return $re;
     }
 
@@ -134,11 +134,11 @@ class FormacaoAcad
         $sql = "UPDATE usuario SET nome = '".$this->nome."', cpf = '". $this->cpf."', dataNascimento = '". $this->dataNascimento."',
         email='".$this->email."'  WHERE idusuario ='". $this->id. "'"    ;
         if ($conn->query($sql) === TRUE) {
-            $conn->close();
+            //$conn->close();
             return TRUE;
            
         } else {
-            $conn->close();
+            //$conn->close();
             return FALSE;
         }
     }

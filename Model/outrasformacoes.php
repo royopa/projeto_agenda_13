@@ -166,11 +166,11 @@ class OutrasFormacoes
         
         if ($conn->query($sql) === true) {
             $this->id = mysqli_insert_id($conn);
-            $conn->close();
+            //$conn->close();
             return true;
         }
         
-        $conn->close();
+        //$conn->close();
         return false;
     }
 
@@ -180,11 +180,11 @@ class OutrasFormacoes
         $sql = "DELETE FROM outrasformacoes WHERE idoutrasformacoes='".$this->id."'";
         
         if ($conn->query($sql) === true) {
-            $conn->close();
+            //$conn->close();
             return true;
         }
         
-        $conn->close();
+        //$conn->close();
         return false;
 
     }
@@ -195,7 +195,7 @@ class OutrasFormacoes
 
         $sql = "SELECT * FROM outrasformacoes WHERE idusuario='".$this->idUsuario."'";
         $re = $conn->query($sql);
-        $conn->close();
+        //$conn->close();
         return $re;
     }
 

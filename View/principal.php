@@ -82,7 +82,7 @@
     <div class="w3-padding-128 w3-content w3-text-grey" id="dPessoais">
         <h2 class="w3-text-cyan">Dados Pessoais</h2>
         
-        <form action="/Controller/navegacao.php" method="post" class=" w3-row  w3-light-grey w3-text-blue w3-margin" style="width: 70%;">
+        <form action="/Controller/Navegacao.php" method="post" class=" w3-row  w3-light-grey w3-text-blue w3-margin" style="width: 70%;">
         <input class="w3-input w3-border w3-round-large" name="txtID" type="hidden"
                     value="<?php echo unserialize($_SESSION['Usuario'])->getID();?>">
             <div class="w3-row w3-section">
@@ -140,7 +140,7 @@
 
 
 
-        <form action="/Controller/navegacao.php" method="post" class=" w3-row  w3-light-grey w3-text-blue w3-margin" style="width: 70%;">
+        <form action="/Controller/Navegacao.php" method="post" class=" w3-row  w3-light-grey w3-text-blue w3-margin" style="width: 70%;">
             <div class="w3-row w3-center">
                 <div class="w3-col" style="width:50%;">
                     Data Inicial
@@ -204,7 +204,7 @@
                     $results = $fCon->gerarLista(unserialize($_SESSION['Usuario'])->getID());
                     if($results != null)
                     
-                    while($row = $results->fetch_object()) {
+                    while($row = $results->fetchObject()) {
                         echo '<tr>';
                        
                         echo '<td style="width: 10%;">'.$row->inicio.'</td>';
@@ -231,7 +231,7 @@
     <br> <br> <br>
     <div class="w3-padding-128 w3-content w3-text-grey" id="eProfissional">
         <h2 class="w3-text-cyan">Experiência Profissional</h2>
-                <form action="/Controller/navegacao.php" method="post" class=" w3-row  w3-light-grey w3-text-blue w3-margin" style="width: 70%;">
+                <form action="/Controller/Navegacao.php" method="post" class=" w3-row  w3-light-grey w3-text-blue w3-margin" style="width: 70%;">
             <div class="w3-row w3-center">
                 <div class="w3-col" style="width:50%;">
                     Data Inicial
@@ -303,7 +303,7 @@
                     $results = $ePro->gerarLista(unserialize($_SESSION['Usuario'])->getID());
                     if($results != null)
                     
-                    while($row = $results->fetch_object()) {
+                    while($row = $results->fetchObject()) {
                         echo '<tr>';
                         echo '<td style="width: 10%;">'.$row->inicio.'</td>';
                         echo '<td style="width: 10%;">'.$row->fim.'</td>';

@@ -12,7 +12,7 @@
     </div>
     
     <div>
-        <form action="/Controller/navegacao.php" method="post" class=" w3-row w3-light-grey w3-text-blue w3-margin" style="width:70%;">
+        <form action="/Controller/Navegacao.php" method="post" class=" w3-row w3-light-grey w3-text-blue w3-margin" style="width:70%;">
             <div class="w3-row w3-center">
                 <div class="w3-col" style="width:50%;">
                     Data Inicial
@@ -46,7 +46,7 @@
                             <i class="w3-xxlarge fa fa-align-justify"></i>
                         </div>
                         <div class="w3-rest">
-                            <input class="w3-input w3-border w3-round-large" name="txtDescEP" type="text" placeholder="Ex.: Curso de Inglês - Inglês City">
+                            <input class="w3-input w3-border w3-round-large" name="txtDescOF" type="text" placeholder="Ex.: Curso de Inglês - Inglês City">
                         </div>
                     </div>
                     
@@ -72,9 +72,39 @@
                 </thead>
                 <tbody>
                 <!-- código em php que percorerrá a base de dados -->        
+                <?php
+                    require_once '../Controller/OutrasFormacoesController.php';
+                    $fCon = new OutrasFormacoesController();
+                    $data = $fCon->gerarLista(1);
+                    foreach ($data as $row) {
+                ?>
+
+                    <tr class="w3-center">
+                        <td><?php echo $row['inicio']; ?></td>
+                        <td><?php echo $row['fim']; ?></td>
+                        <td><?php echo $row['descricao']; ?></td>
+                        <td>
+                        <!--
+
+                        <form action="/Controller/Navegacao.php" method="post">
+                        <input type="hidden" name="id" value="'.$row->idformacaoAcademica.'">
+                        <button name="btnExcluirFA" class="w3-button w3-block w3-blue w3-cell w3-round-
+                        large">
+                        <i class="fa fa-user-times"></i> </button></td>
+                        </form>';
+                    -->
+                        Remover
+
+                        </td>
+                    </tr>                
+                <?php
+                }
+                ?>
+
                 </tbody>
             </table>
         </div>  
     </body>
 </html>
             
+

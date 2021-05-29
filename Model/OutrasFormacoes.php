@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Model;
-
 /**
  * OutrasFormacoes
  *
@@ -103,7 +101,7 @@ class OutrasFormacoes
      *
      * @return  self
      */ 
-    public function setDataInicio(DateTime $dataInicio)
+    public function setDataInicio($dataInicio)
     {
         $this->dataInicio = $dataInicio;
 
@@ -127,7 +125,7 @@ class OutrasFormacoes
      *
      * @return  self
      */ 
-    public function setDataFim(DateTime $dataFim)
+    public function setDataFim($dataFim)
     {
         $this->dataFim = $dataFim;
 
@@ -151,7 +149,7 @@ class OutrasFormacoes
      *
      * @return  self
      */ 
-    public function setDescricao(string $descricao)
+    public function setDescricao($descricao)
     {
         $this->descricao = $descricao;
 
@@ -161,54 +159,41 @@ class OutrasFormacoes
     public function inserirBD(): bool
     {
         $con = $this->getConexao();
+        $sql = "INSERT INTO outrasformacoes (idusuario, inicio, fim, descricao) VALUES (?,?,?,?)";
+        $stmt= $con->prepare($sql);
+        $stmt->execute([$this->idUsuario, $this->dataInicio, $this->dataFim, $this->descricao]);
 
-        $sql = "INSERT INTO outrasformacoes (idusuario, inicio, fim, descricao) VALUES ('".$this->idUsuario."','".$this->dataInicio."','".$this->dataFim."','".$this->descricao."')";
-        
-        if ($conn->query($sql) === true) {
-            $this->id = mysqli_insert_id($conn);
-            $conn->close();
-            return true;
-        }
-        
-        $conn->close();
-        return false;
+        return true;
     }
 
-    public function excluirBD(int $id): bool
+    public function excluirBD($id): bool
     {
         $con = $this->getConexao();
         $sql = "DELETE FROM outrasformacoes WHERE idoutrasformacoes='".$this->id."'";
         
         if ($conn->query($sql) === true) {
-            $conn->close();
+            //$conn->close();
             return true;
         }
         
-        $conn->close();
+        //$conn->close();
         return false;
 
     }
 
-    public function listaFormacoes(int $idUsuario)
+    public function listaFormacoes($idUsuario)
     {
-        $con = $this->getConexao();
-
-        $sql = "SELECT * FROM outrasformacoes WHERE idusuario='".$this->idUsuario."'";
-        $re = $conn->query($sql);
-        $conn->close();
-        return $re;
+        $conn = $this->getConexao();
+        $sql = "SELECT * FROM outrasformacoes WHERE idusuario='".$idUsuario."'";
+        $data = $conn->query($sql)->fetchAll();
+        return $data;
     }
 
     private function getConexao() 
     {
         require_once 'ConexaoBD.php';
-
-        $con = new ConexaoDB();
+        $con = new ConexaoBD();
         $con = $con->conectar();
-        if ($con->connect_error) {
-            die('Erro na conexão:' . $conn->connect_error);
-        }
-        
         return $con;
     }
 }

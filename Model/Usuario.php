@@ -86,11 +86,11 @@ class Usuario
 
         if ($conn->query($sql) === TRUE) {
             $this->id = mysqli_insert_id($conn);
-            $conn->close();
+            //$conn->close();
             return TRUE;
            
         } else {
-            $conn->close();
+            ////$conn->close();
             return FALSE;
         }
     }
@@ -101,13 +101,10 @@ class Usuario
         
         $con = new ConexaoBD();
         $conn = $con->conectar();
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        } 
-
         $sql = "SELECT * FROM usuario WHERE cpf =  ".$cpf ;
         $re = $conn->query($sql);
-        $r = $re->fetch_object();
+        $r = $re->fetchObject();
+
         if($r != null)
         {
             $this->id = $r->idusuario;
@@ -116,19 +113,19 @@ class Usuario
             $this->cpf = $r->cpf;
             $this->dataNascimento = $r->dataNascimento;
             $this->senha = $r->senha;
-            $conn->close();
+            //$conn->close();
             return true;
         }
         else
         {
-            $conn->close();
+            //$conn->close();
             return false;
         }
     }
 
     public function atualizarBD()
     {
-        require_once 'ConexaoBD.php';   
+        require_once 'ConexaoBD.php';
         $con = new ConexaoBD();
         $conn = $con->conectar();
         if ($conn->connect_error) {
@@ -137,11 +134,11 @@ class Usuario
         $sql = "UPDATE usuario SET nome = '".$this->nome."', cpf = '". $this->cpf."', dataNascimento = '". $this->dataNascimento."',
         email='".$this->email."'  WHERE idusuario ='". $this->id. "'"    ;
         if ($conn->query($sql) === TRUE) {
-            $conn->close();
+            //$conn->close();
             return TRUE;
            
         } else {
-            $conn->close();
+            //$conn->close();
             return FALSE;
         }
     }
