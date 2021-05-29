@@ -228,6 +228,14 @@
     
     </div>
     </div>
+
+    <br> <br> <br>
+
+    <?php
+        include_once '../View/OutrasFormacoes.php';
+    ?> 
+
+
     <br> <br> <br>
     <div class="w3-padding-128 w3-content w3-text-grey" id="eProfissional">
         <h2 class="w3-text-cyan">Experiência Profissional</h2>

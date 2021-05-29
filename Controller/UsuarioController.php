@@ -37,6 +37,7 @@ class UsuarioController{
         require_once '../Model/Usuario.php';
         $usuario = new Usuario();
         $usuario->carregarUsuario($cpf);
+
         if($usuario->getSenha() == $senha)
         {
             $_SESSION['Usuario'] = serialize($usuario);

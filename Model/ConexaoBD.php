@@ -21,7 +21,7 @@ class ConexaoBD
     public function conectar()
     {
         if ($this->pdo == null) {
-            $this->pdo = new PDO("sqlite:/home/rodrigo/projects/projeto_agenda_13/db/basedados.db");
+            $this->pdo = new PDO("sqlite:../db/basedados.db");
         }
 
         return $this->pdo;

@@ -73,54 +73,33 @@ class Usuario
     //Métodos Banco de Dados
     public function inserirBD()
     {
-        require_once 'ConexaoBD.php';   
-        
-        $con = new ConexaoBD();
-        $conn = $con->conectar();
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        } 
-
-        $sql = "INSERT INTO usuario (nome, cpf, email, senha)
-        VALUES ('".$this->nome."', '".$this->cpf."', '".$this->email."','".$this->senha."')";
-
-        if ($conn->query($sql) === TRUE) {
-            $this->id = mysqli_insert_id($conn);
-            //$conn->close();
-            return TRUE;
-           
-        } else {
-            ////$conn->close();
-            return FALSE;
-        }
+        $con = $this->getConexao();
+        $sql = "INSERT INTO usuario (nome, cpf, email, senha) VALUES (?,?,?,?)";
+        $stmt= $con->prepare($sql);
+        return $stmt->execute([$this->nome, $this->cpf, $this->email, $this->senha]);
     }
 
     public function carregarUsuario($cpf)
     {
-        require_once 'ConexaoBD.php';   
-        
-        $con = new ConexaoBD();
-        $conn = $con->conectar();
-        $sql = "SELECT * FROM usuario WHERE cpf =  ".$cpf ;
-        $re = $conn->query($sql);
-        $r = $re->fetchObject();
+        $con = $this->getConexao();
+        $sql = "SELECT * FROM usuario WHERE cpf = ?";
+        $stmt = $con->prepare($sql);
 
-        if($r != null)
+        $stmt->execute([$cpf]);
+        $row = $stmt->fetch();
+
+        if($row != null)
         {
-            $this->id = $r->idusuario;
-            $this->nome = $r->nome;
-            $this->email = $r->email;
-            $this->cpf = $r->cpf;
-            $this->dataNascimento = $r->dataNascimento;
-            $this->senha = $r->senha;
-            //$conn->close();
+            $this->id = $row['idusuario'];
+            $this->nome = $row['nome'];
+            $this->email = $row['email'];
+            $this->cpf = $row['cpf'];
+            $this->dataNascimento = $row['dataNascimento'];
+            $this->senha = $row['senha'];
             return true;
         }
-        else
-        {
-            //$conn->close();
-            return false;
-        }
+        
+        return false;
     }
 
     public function atualizarBD()
@@ -142,5 +121,12 @@ class Usuario
             return FALSE;
         }
     }
+
+    private function getConexao() 
+    {
+        require_once 'ConexaoBD.php';
+        $con = new ConexaoBD();
+        $con = $con->conectar();
+        return $con;
+    }
 }
-?>

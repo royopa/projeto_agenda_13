@@ -120,18 +120,17 @@ class ExperienciaProfissional
     }
     public function listaExperiencias($idusuario)
     {
-        require_once 'ConexaoBD.php';   
-        
-        $con = new ConexaoBD();
-        $conn = $con->conectar();
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        } 
-
-        $sql = "SELECT * FROM experienciaProfissional WHERE idusuario =  '".$idusuario."'" ;
-        $re = $conn->query($sql);
-        //$conn->close();
-        return $re;
+        $conn = $this->getConexao();
+        $sql = "SELECT * FROM experienciaProfissional WHERE idusuario='".$idUsuario."'";
+        $data = $conn->query($sql)->fetchAll();
+        return $data;
     }
+
+    private function getConexao() 
+    {
+        require_once 'ConexaoBD.php';
+        $con = new ConexaoBD();
+        $con = $con->conectar();
+        return $con;
+    }    
 }
-?>

@@ -75,7 +75,8 @@
                 <?php
                     require_once '../Controller/OutrasFormacoesController.php';
                     $fCon = new OutrasFormacoesController();
-                    $data = $fCon->gerarLista(1);
+                    $idUsuario = unserialize($_SESSION['Usuario'])->getID();
+                    $data = $fCon->gerarLista($idUsuario);
                     foreach ($data as $row) {
                 ?>
 
@@ -84,17 +85,11 @@
                         <td><?php echo $row['fim']; ?></td>
                         <td><?php echo $row['descricao']; ?></td>
                         <td>
-                        <!--
-
-                        <form action="/Controller/Navegacao.php" method="post">
-                        <input type="hidden" name="id" value="'.$row->idformacaoAcademica.'">
-                        <button name="btnExcluirFA" class="w3-button w3-block w3-blue w3-cell w3-round-
-                        large">
-                        <i class="fa fa-user-times"></i> </button></td>
-                        </form>';
-                    -->
-                        Remover
-
+                            <form action="/Controller/Navegacao.php" method="post">
+                                <input type="hidden" name="id" value="<?php echo $row['idoutrasformacoes']; ?>">
+                                    <button name="btnExcluirOF" class="w3-button w3-block w3-blue w3-cell w3-round-large">
+                                    <i class="fa fa-user-times"></i> </button></td>
+                            </form>
                         </td>
                     </tr>                
                 <?php

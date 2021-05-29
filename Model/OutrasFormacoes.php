@@ -162,23 +162,16 @@ class OutrasFormacoes
         $sql = "INSERT INTO outrasformacoes (idusuario, inicio, fim, descricao) VALUES (?,?,?,?)";
         $stmt= $con->prepare($sql);
         $stmt->execute([$this->idUsuario, $this->dataInicio, $this->dataFim, $this->descricao]);
-
         return true;
     }
 
     public function excluirBD($id): bool
     {
         $con = $this->getConexao();
-        $sql = "DELETE FROM outrasformacoes WHERE idoutrasformacoes='".$this->id."'";
-        
-        if ($conn->query($sql) === true) {
-            //$conn->close();
-            return true;
-        }
-        
-        //$conn->close();
-        return false;
-
+        $sql = "DELETE FROM outrasformacoes WHERE idoutrasformacoes=?";
+        $stmt= $con->prepare($sql);
+        $stmt->execute([$id]);
+        return true;
     }
 
     public function listaFormacoes($idUsuario)

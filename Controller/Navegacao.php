@@ -28,23 +28,23 @@
                 
                 if($uController->inserir($_POST["txtNome"], $_POST["txtCPF"], $_POST["txtEmail"], $_POST['txtSenha']))
                 {           
-                    include_once './View/cadastroRealizado.php';
+                    include_once '../View/cadastroRealizado.php';
                 }
                 else
                 {
-                    include_once './View/cadastroNaoRealizado.php';
+                    include_once '../View/cadastroNaoRealizado.php';
                 }
             }
             else{
 
                 if(isset($_POST["btnCadRealizado"]))
                 {
-                    include_once './View/principal.php';
+                    include_once '../View/principal.php';
                 }
                 else{
                     if(isset($_POST["btnCadNRealizado"]))
                     {
-                        include_once './View/primeiroAcesso.php';
+                        include_once '../View/primeiroAcesso.php';
                     }
                     else
                     {       
@@ -57,11 +57,11 @@
                             if($uController->atualizar($_POST["txtID"], $_POST["txtNome"], $_POST["txtCPF"], $_POST["txtEmail"],
                             date('Y-m-d', strtotime($_POST['txtData']))))
                             {           
-                                include_once './View/atualizacaoRealizada.php';
+                                include_once '../View/atualizacaoRealizada.php';
                             }
                             else
                             {
-                                include_once './View/operacaoNaoRealizada.php';
+                                include_once '../View/operacaoNaoRealizada.php';
                             }
                         
                         }
@@ -76,11 +76,11 @@
                                 
                                 if($fController->inserir(date('Y-m-d', strtotime($_POST['txtInicioFA'])), date('Y-m-d', strtotime($_POST["txtFimFA"])), $_POST["txtDescFA"], unserialize($_SESSION['Usuario'])->getID()) != false)
                                 {           
-                                    include_once './View/cadastroRealizado.php';
+                                    include_once '../View/cadastroRealizado.php';
                                 }
                                 else
                                 {
-                                    include_once './View/cadastroNaoRealizado.php';
+                                    include_once '../View/cadastroNaoRealizado.php';
                                 }
                             
                             }
@@ -94,11 +94,11 @@
                                         
                                         if($fController->remover($_POST['id']) == true)
                                         {           
-                                            include_once './View/informacaoExcluida.php';
+                                            include_once '../View/informacaoExcluida.php';
                                         }
                                         else
                                         {
-                                            include_once './View/operacaoNaoRealizda.php';
+                                            include_once '../View/operacaoNaoRealizda.php';
                                         }
                                     
                                     }
@@ -112,11 +112,11 @@
                                             
                                             if($epController->inserir(date('Y-m-d', strtotime($_POST['txtInicioEP'])), date('Y-m-d', strtotime($_POST["txtFimEP"])), $_POST["txtEmpEP"], $_POST["txtDescEP"], unserialize($_SESSION['Usuario'])->getID()) != false)
                                             {           
-                                                include_once './View/informacaoInserida.php';
+                                                include_once '../View/informacaoInserida.php';
                                             }
                                             else
                                             {
-                                                include_once './View/operacaoNRealizada.php';
+                                                include_once '../View/operacaoNRealizada.php';
                                             }
                                         
                                         }
@@ -131,11 +131,11 @@
                                                 
                                                 if($epController->remover($_POST['idEP']) == true)
                                                 {           
-                                                    include_once './View/informacaoExcluida.php';
+                                                    include_once '../View/informacaoExcluida.php';
                                                 }
                                                 else
                                                 {
-                                                    include_once './View/operacaoNRealizada.php';
+                                                    include_once '../View/operacaoNRealizada.php';
                                                 }
                                             
                                             }
@@ -147,8 +147,8 @@
                                                 
                                                     $fController = new OutrasFormacoesController();
                                                     
-                                                    if($fController->inserir(date('Y-m-d', strtotime($_POST['txtInicioOF'])), date('Y-m-d', strtotime($_POST["txtFimOF"])), $_POST["txtDescOF"], 1) != false)
-                                                    //if($fController->inserir(date('Y-m-d', strtotime($_POST['txtInicioOF'])), date('Y-m-d', strtotime($_POST["txtFimOF"])), $_POST["txtDescOF"], unserialize($_SESSION['Usuario'])->getID()) != false)
+                                                    //if($fController->inserir(date('Y-m-d', strtotime($_POST['txtInicioOF'])), date('Y-m-d', strtotime($_POST["txtFimOF"])), $_POST["txtDescOF"], 1) != false)
+                                                    if($fController->inserir(date('Y-m-d', strtotime($_POST['txtInicioOF'])), date('Y-m-d', strtotime($_POST["txtFimOF"])), $_POST["txtDescOF"], unserialize($_SESSION['Usuario'])->getID()) != false)
                                                     {           
                                                         include_once '../View/informacaoInserida.php';
                                                     }
@@ -168,11 +168,11 @@
                                                         
                                                         if($fController->remover($_POST['id']) == true)
                                                         {           
-                                                            include_once './View/informacaoExcluida.php';
+                                                            include_once '../View/informacaoExcluida.php';
                                                         }
                                                         else
                                                         {
-                                                            include_once './View/operacaoNaoRealizada.php';
+                                                            include_once '../View/operacaoNaoRealizada.php';
                                                         }
                                                     
                                                     }
@@ -180,11 +180,11 @@
                                                         if(isset($_POST["btnPrincipal"]) || isset($_POST["btnAtualizacaoCadastro"]) || isset($_POST["btnCadRealizado"])
                                                         || isset($_POST["btnInfInserir"]) || isset($_POST["btnInfExcluir"]))
                                                         {
-                                                            include_once './View/principal.php';
+                                                            include_once '../View/principal.php';
                                                         }
                                                         else
                                                         {
-                                                            include_once './View/login.php';
+                                                            include_once '../View/login.php';
                                                         }
                                                     }
                                                 }
