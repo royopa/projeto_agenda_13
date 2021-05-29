@@ -1,22 +1,23 @@
 <?php
 
-if (!isset($_SESSION)) {
-    session_start();
-}
-
-class UsuarioController
-{
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+class UsuarioController{
+    
+    
     public function inserir($nome, $cpf, $email,$senha) {
         require_once '../Model/Usuario.php';
         $usuario = new Usuario();
         $usuario->setNome($nome);
         $usuario->setCPF($cpf);
-        $usuario->setEmail($email);
-        $usuario->setSenha($senha);
+        $usuario->setEmail($email); 
+        $usuario->setSenha($senha);    
         //return $usuario->getNome();
         $r = $usuario->inserirBD();
         $_SESSION['Usuario'] = serialize($usuario);
-        return $r;
+        return $r;     
     }
 
     public function atualizar($id, $nome, $cpf, $email, $dataNascimento) {
@@ -30,22 +31,24 @@ class UsuarioController
         $r = $usuario->atualizarBD();
         $_SESSION['Usuario'] = serialize($usuario);
         return $r;
-        }
-
-        
-        public function login($cpf, $senha)
-        {
+    }
+    public function login($cpf, $senha)
+    {
         require_once '../Model/Usuario.php';
         $usuario = new Usuario();
         $usuario->carregarUsuario($cpf);
         if($usuario->getSenha() == $senha)
         {
-        $_SESSION['Usuario'] = serialize($usuario);
-        return true;
+            $_SESSION['Usuario'] = serialize($usuario);
+            return true;
         }
         else
         {
-        return false;
+            return false;
         }
-        }        
+        
+        
+    }
 }
+
+?>
