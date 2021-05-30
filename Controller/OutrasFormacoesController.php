@@ -2,31 +2,30 @@
 
 require_once '../Model/OutrasFormacoes.php';
 
-if(!isset($_SESSION)) 
-{ 
-    session_start(); 
-} 
+if (!isset($_SESSION)) {
+    session_start();
+}
 
 
-class OutrasFormacoesController 
+class OutrasFormacoesController
 {
     public function inserir($inicio, $fim, $descricao, $idusuario)
     {
         $formacao = new OutrasFormacoes();
         $formacao->setDataInicio($inicio);
         $formacao->setDataFim($fim);
-        $formacao->setDescricao($descricao); 
-        $formacao->setIdUsuario($idusuario);    
+        $formacao->setDescricao($descricao);
+        $formacao->setIdUsuario($idusuario);
         $r = $formacao->inserirBD();
-   
-        return $r;     
+
+        return $r;
     }
 
     public function remover($id)
     {
         $formacao = new OutrasFormacoes();
         $r = $formacao->excluirBD($id);
-        return $r;     
+        return $r;
     }
 
     public function gerarLista($idusuario)
