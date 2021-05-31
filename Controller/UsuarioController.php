@@ -58,7 +58,6 @@ class UsuarioController
     {
         require_once '../Model/Usuario.php';
         $usuario = new Usuario();
-        $usuario->showUsuario($id);
-        var_dump($usuario);
+        return $usuario->showUsuario($id);
     }
 }

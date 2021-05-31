@@ -118,7 +118,7 @@ class ExperienciaProfissional
             return false;
         }
     }
-    public function listaExperiencias($idusuario)
+    public function listaExperiencias($idUsuario)
     {
         $conn = $this->getConexao();
         $sql = "SELECT * FROM experienciaProfissional WHERE idusuario='".$idUsuario."'";

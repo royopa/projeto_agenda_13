@@ -29,10 +29,11 @@ if (isset($_POST["btnVisualizarUsuario"])) {
     include_once '../Model/Usuario.php';
 
     $fController = new UsuarioController();
-    $usuario = $fController->show($_POST['id']);
+    $usuarioDetalhe = $fController->show($_POST['id']);
 
-    if ($usuario) {
+    if ($usuarioDetalhe) {
         // mostrar view com o detalhe do usuário
+        include_once '../View/usuarioDetalhe.php';
     }
 }
 

@@ -104,7 +104,7 @@ class Usuario
     public function showUsuario($id)
     {
         $con = $this->getConexao();
-        $sql = "SELECT * FROM usuario WHERE id = ?";
+        $sql = "SELECT * FROM usuario WHERE idusuario = ?";
         $stmt = $con->prepare($sql);
 
         $stmt->execute([$id]);

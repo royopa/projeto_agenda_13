@@ -64,11 +64,11 @@ if (!isset($_SESSION)) {
                     foreach ($data as $row) {
                     ?>
                         <tr class="w3-center">
-                            <td><?php echo $row['id']; ?></td>
+                            <td><?php echo $row['idusuario']; ?></td>
                             <td><?php echo $row['nome']; ?></td>
                             <td>
                                 <form action="/Controller/Navegacao.php" method="post">
-                                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                    <input type="hidden" name="id" value="<?php echo $row['idusuario']; ?>">
                                     <button name="btnVisualizarUsuario" class="w3-button w3-block w3-blue w3-cell w3-round-large">
                                         <i class="fa fa-user"></i>
                                     </button>
